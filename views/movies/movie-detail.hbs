@@ -1,0 +1,17 @@
+<h2>More about {{movie.title}}</h2>
+<ul>
+    <li>Genre: {{movie.genre}}</li>
+    <li>Plot: {{movie.plot}}</li>
+    <li><ul> Starring: 
+        {{#each movie.cast}}
+            <li>{{this.name}}</li>
+            <ul>
+                <li>Occuptation: {{this.occupation}}</li>
+                <li>Catch Phrase:{{this.catchPhrase}}</li>
+            </ul>
+        {{/each}}
+        </ul
+    ></li>
+    <a href="/movies/delete/{{movie._id}}">Delete this movie</a>
+    <a href="/movies/edit/{{movie._id}}">Edit this movie</a>
+</ul>
