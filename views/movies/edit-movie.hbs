@@ -7,7 +7,7 @@
     <label for="plot">Plot</label>
     <input type="text" id="plot" name="plot" value="{{movieToEdit.plot}}">
     <label for="cast">Cast</label>
-    <select name="cast" id="cast">
+    <select name="cast" id="cast" multiple>
         {{#each celebrities}}
             {{!-- {{#if movieToEdit.cast}}
                 <option value="{{this.name}}" selected>{{this.name}}</option>

@@ -1,7 +1,7 @@
 const router = require("express").Router();
+const mongoose = require("mongoose");
 const celebrityModel = require("./../models/Celebrity.model");
 const movieModel = require("./../models/Movies.model");
-const mongoose = require("mongoose");
 const { route } = require("express/lib/application");
 
 // this route is prefixed with /movies
@@ -18,20 +18,7 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-// **** DISPLAY A MOVIE
-router.get("/:id", async (req, res, next) => {
-  try {
-    const movie = await movieModel.findById(req.params.id).populate("cast");
-    console.log(movie.cast);
-    res.render("movies/movie-detail.hbs", {
-      movie,
-    });
-  } catch (e) {
-    next(e);
-  }
-});
-
-// **** CREATE A MOVIE
+// **** CREATE A MOVIE //
 router.get("/create", async (req, res, next) => {
   try {
     const celebrities = await celebrityModel.find();
@@ -49,6 +36,19 @@ router.post("/create", async (req, res, next) => {
     await movieModel.create(newMovie);
     console.log(newMovie);
     res.redirect("/movies");
+  } catch (e) {
+    next(e);
+  }
+});
+
+// **** DISPLAY A MOVIE
+router.get("/:id", async (req, res, next) => {
+  try {
+    const movie = await movieModel.findById(req.params.id).populate("cast");
+    console.log(movie.cast);
+    res.render("movies/movie-detail.hbs", {
+      movie,
+    });
   } catch (e) {
     next(e);
   }
